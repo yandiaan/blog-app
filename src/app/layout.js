@@ -1,5 +1,8 @@
 import { Poppins } from "next/font/google";
 import "./globals.css";
+import classNames from "classnames";
+import Navbar from "./_components/organisms/navbar";
+import Providers from "./_contexts/providers";
 import { LangProvider } from "./_contexts/LangContext";
 import { ThemeProvider } from "./_contexts/ThemeContext";
 
@@ -16,11 +19,17 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+
   return (
-    <html lang="en">
+    <html>
       <LangProvider>
         <ThemeProvider>
-          <body className={poppins.className}>{children}</body>
+          <body className={`${poppins.className} dark`}>
+            <header>
+              <Navbar />
+            </header>
+            <main>{children}</main>
+          </body>
         </ThemeProvider>
       </LangProvider>
     </html>
