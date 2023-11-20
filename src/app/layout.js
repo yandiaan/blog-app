@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "./_components/organisms/navbar";
 import { LangProvider } from "./_contexts/LangContext";
 import { ThemeProvider } from "./_contexts/ThemeContext";
+import { ToastContainer } from "react-toastify";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -17,7 +18,6 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-
   return (
     <html>
       <LangProvider>
@@ -26,7 +26,21 @@ export default function RootLayout({ children }) {
             <header>
               <Navbar />
             </header>
-            <main className="bg-gray-100 dark:bg-gray-600 dark:text-white">{children}</main>
+            <main className="bg-gray-100 dark:bg-gray-600 dark:text-white">
+              {children}
+            </main>
+            <ToastContainer
+              position="top-center"
+              autoClose={5000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme="colored"
+            />
           </body>
         </ThemeProvider>
       </LangProvider>

@@ -16,7 +16,7 @@ const Home = async () => {
       </div>
       <div className="mt-6 px-24 grid grid-cols-2 gap-x-8 gap-y-16">
         <BlogList posts={posts} />
-        <LoadMore />
+        <LoadMore type="posts" />
       </div>
     </div>
   );

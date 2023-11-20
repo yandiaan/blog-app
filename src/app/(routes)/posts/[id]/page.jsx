@@ -1,6 +1,5 @@
 import CommentCount from "@/app/_components/atoms/commentCount";
 import BlogDetail from "@/app/_components/molecules/blogDetail";
-import CommentCard from "@/app/_components/molecules/commentCard";
 import CommentList from "@/app/_components/organisms/commentList";
 import { getComments, getPostById, getUser } from "@/app/_services";
 import React from "react";

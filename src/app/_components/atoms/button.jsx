@@ -1,7 +1,7 @@
 import cx from "classnames";
 import React from "react";
 
-export default function Button({ children, className, color, onClick }) {
+export default function Button({ children, className, color, onClick, type = "button" }) {
   const colorScheme = (color) => {
     switch (color) {
       case "red":
@@ -9,6 +9,12 @@ export default function Button({ children, className, color, onClick }) {
         break;
       case "green":
         return "bg-green-500 text-white";
+        break;
+      case "light":
+        return "bg-cyan-950 text-white";
+        break;
+      case "dark":
+        return "bg-orange-600 text-white";
         break;
       case "darkMode":
         return cx(
@@ -24,6 +30,7 @@ export default function Button({ children, className, color, onClick }) {
 
   return (
     <button
+      type={type}
       onClick={onClick}
       className={cx([
         "w-max p-2 rounded-lg",

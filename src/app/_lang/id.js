@@ -5,4 +5,19 @@ export const translationsId = {
     },
     blogListTitle: "Post Terbaru.",
     commentCount: "Komentar",
+    formUser: {
+        title: "Tambah Pengguna",
+        form: {
+            label: {
+                name: "Nama",
+                email: "Email",
+                gender: "Jenis Kelamin",
+            },
+            placeholder: {
+                name: "Masukkan Nama Pengguna",
+                email: "Masukkan Email",
+                gender: ["Laki-Laki", "Perempuan"]
+            }
+        }
+    }
 }

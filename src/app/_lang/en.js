@@ -5,4 +5,19 @@ export const translationsEn = {
     },
     blogListTitle: "Latest Posts.",
     commentCount: "Comments",
+    formUser: {
+        title: "Create User",
+        form: {
+            label: {
+                name: "Name",
+                email: "Email",
+                gender: "Gender",
+            },
+            placeholder: {
+                name: "Enter your name",
+                email: "Enter your email",
+                gender: ["Male", "Female"]
+            }
+        }
+    }
 }

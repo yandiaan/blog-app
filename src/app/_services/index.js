@@ -47,10 +47,14 @@ export async function getPostById(id) {
 
 // get all users
 export async function getAllUsers(page) {
-    return await axios.get(`/users&page=${page}&per_page=10`)
-        .catch((error) => {
-            return error;
-        })
+     try {
+      const res = await axios.get(`/users?page=${page}&per_page=10`);
+      const data = res.data;
+      
+      return data;
+     } catch (error) {
+      return error.message;
+     }
 }
 
 // get users by id
@@ -70,10 +74,10 @@ export async function getUser(id) {
 
 // post new user 
 export async function addUser(payload) {
-    return await axios.post(`/users`, payload)
-        .catch((error) => {
-            return error;
-        })
+    const response = await axios.post(`/users`, payload);
+    const user = response.data;
+
+    return user;
 }
 
 // update user
