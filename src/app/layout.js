@@ -1,8 +1,6 @@
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import classNames from "classnames";
 import Navbar from "./_components/organisms/navbar";
-import Providers from "./_contexts/providers";
 import { LangProvider } from "./_contexts/LangContext";
 import { ThemeProvider } from "./_contexts/ThemeContext";
 
@@ -28,7 +26,7 @@ export default function RootLayout({ children }) {
             <header>
               <Navbar />
             </header>
-            <main>{children}</main>
+            <main className="bg-gray-100 dark:bg-gray-600 dark:text-white">{children}</main>
           </body>
         </ThemeProvider>
       </LangProvider>

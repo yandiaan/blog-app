@@ -2,19 +2,48 @@ import axios from "@/app/_lib/axiosConfig";
 
 // get posts per page
 export async function getPostsPerPage(page) {
-    return await axios.get(`/posts?page=${page}&per_page=20`)
-        .catch((error) => {
-            return error;
-        })
-}
+    try {
+      let posts = [];
+      const reqPosts = await axios.get(`/posts?page=${page}&per_page=10`);
+      const dataPosts = await reqPosts.data;
+      
+      const getUserPromises = dataPosts.map(
+        async ({ id, user_id, title, body }) => {
+          const reqComments = await getComments(id);
+          const user = await getUser(user_id);
+          posts.push({
+            id,
+            user_id,
+            title,
+            body,
+            author: user.name,
+            commentCount: reqComments?.length,
+          });
+        }
+      );
+  
+      await Promise.all(getUserPromises);
+  
+      return posts;
+    } catch (error) {
+      console.error("Error fetching posts:", error);
+      return [];
+    }
+  }
 
 // get posts by id
-export async function getPost(id) {
-    return await axios.get(`/posts/${id}`)
-        .catch((error) => {
-            return error;
-        })
-}
+export async function getPostById(id) {
+    try {
+      const response = await axios.get(`/posts/${id}`);
+      
+      const posts = response.data;
+  
+      return posts;
+    } catch (error) {
+      console.error("Error fetching posts:", error);
+      return [];
+    }
+  }
 
 // get all users
 export async function getAllUsers(page) {
@@ -25,11 +54,18 @@ export async function getAllUsers(page) {
 }
 
 // get users by id
-export async function getUser(user_id) {
-    return await axios.get(`/users/${user_id}`)
-        .catch((error) => {
-            return error;
-        })
+export async function getUser(id) {
+  try {
+    const response = await axios.get(`/users/${id}`);
+    const user = response.data;
+    return user;
+  } catch (error) {
+    if (error.code === "ERR_BAD_REQUEST") {
+      return {
+        name: "Anonymous User",
+      };  
+    }
+  }
 }
 
 // post new user 
@@ -65,12 +101,16 @@ export async function searchUser(user_name) {
 }
 
 // get comments post
-export async function getComments(post_id) {
-    return await axios.get(`/posts/${post_id}/comments`)
-        .catch((error) => {
-            return error;
-        })
-}
+export async function getComments(id) {
+    try {
+      const response = await axios.get(`/posts/${id}/comments`);
+      const comments = response.data;
+      return comments;
+    } catch (error) {
+      console.error("Error fetching posts:", error);
+      return [];
+    }
+  }
 
 // post comment
 export async function addComment(post_id, payload) {

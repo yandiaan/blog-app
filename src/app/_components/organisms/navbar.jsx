@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -41,22 +41,23 @@ export default function Navbar() {
     };
   }, []);
 
+
   return (
     <nav className={cx([
-        "flex justify-between items-center",
-        'fixed w-full',
-        "py-8 px-24",
-        "transition-all duration-500 ease-in-out",
-        isScrolled ? "bg-white shadow-lg pt-4 pb-6" : "",
-        ])}>
+      "flex justify-between items-center",
+      'fixed z-30 w-full',
+      "py-8 px-24",
+      "transition-all duration-500 ease-in-out",
+      isScrolled ? "bg-white shadow-lg pt-4 pb-6 dark:bg-slate-700" : "",
+      ])}>
       <Link href="/">
         <h1
           className={cx([
             "text-4xl font-medium",
             "w-fit",
             "group relative cursor-pointer",
-            "before:content-['/'] before:font-bold before:text-orange-600",
-            isScrolled ? "text-gray-500" : "text-white",
+            "before:content-['/'] before:font-bold before:text-orange-600 dark:before:text-cyan-950",
+            isScrolled ? "text-gray-400 dark:text-gray-300" : "text-white",
           ])}
         >
           Blog.

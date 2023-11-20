@@ -1,7 +1,9 @@
 import React from 'react';
 import cx from 'classnames';
+import { useLang } from '@/app/_contexts/LangContext';
 
 const LanguageSelector = ({ options, onSelect }) => {
+  const {lang} = useLang();
   return (
     <select
       className={cx(
@@ -11,6 +13,8 @@ const LanguageSelector = ({ options, onSelect }) => {
         'dark:border-none dark:bg-gray-600 dark:text-white dark:hover:bg-gray-700'
       )}
       onChange={(e) => onSelect(e.target.value)}
+
+      value={lang}
     >
       {options.map((option) => (
         <option key={option.value} value={option.value}>
